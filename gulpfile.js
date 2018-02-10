@@ -2,6 +2,9 @@ var gulp = require("gulp");
 var sass = require("gulp-sass");
 var browserSync = require("browser-sync");
 
+var htmlPaths = ["./src/*.html", "./src/**/*.html"];
+var sassPaths = ["./src/sass/*.scss", "./src/sass/**/*.scss"];
+
 gulp.task("sass", function(){
 	return gulp.src("./src/sass/*.scss")
 	  .pipe(sass().on("error", sass.logError))
@@ -10,8 +13,8 @@ gulp.task("sass", function(){
 });
 
 gulp.task("watch", function(){
-	gulp.watch(["./src/sass/*.scss", "./src/sass/**/*.scss"], ["sass"]);
-	gulp.watch("./build/*.html", ["html"]);
+	gulp.watch(sassPaths, ["sass"]);
+	gulp.watch(htmlPaths, ["html"]);
 });
 
 gulp.task("server", function(){
@@ -19,7 +22,7 @@ gulp.task("server", function(){
 });
 
 gulp.task("html", function(){
-	return gulp.src("./src/*.html")
+	return gulp.src(htmlPaths)
 	  .pipe(gulp.dest("./build/"))
 	  .pipe(browserSync.stream());
 });
@@ -31,4 +34,4 @@ gulp.task("assets", function(){
 
 gulp.task("build", ["sass", "html", "assets"]);
 
-gulp.task("default", ["watch", "server"]);
+gulp.task("default", ["assets", "watch", "server"]);
