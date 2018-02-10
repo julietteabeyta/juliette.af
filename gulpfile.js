@@ -10,7 +10,7 @@ gulp.task("sass", function(){
 });
 
 gulp.task("watch", function(){
-	gulp.watch(["./sass/*.scss", "./sass/**/*.scss"], ["sass"]);
+	gulp.watch(["./src/sass/*.scss", "./src/sass/**/*.scss"], ["sass"]);
 	gulp.watch("./build/*.html", ["html"]);
 });
 

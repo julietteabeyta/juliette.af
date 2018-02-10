@@ -5,6 +5,10 @@
 
 @import "components/nav";
 
+*{
+	box-sizing: border-box;
+}
+
 body{
 	background: black;
 }
@@ -18,7 +22,6 @@ body{
 	height: calc(100vh - #{$border-margin*2});
 	position: fixed;
 	margin: $border-margin;
-	box-sizing: border-box;
 	top: 0;
 	left: 0;
 	border: $border-width solid;
