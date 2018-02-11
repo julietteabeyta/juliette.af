@@ -11,7 +11,6 @@ gulp.task("sass", function(){
 	  .pipe(browserSync.stream());
 });
 gulp.task("js", function() {
-	// var config = Object.assign({}, webpackConfig);
 	webpack(webpackConfig, function(err, stats) {
 		browserSync.reload();
 	})
@@ -33,10 +32,14 @@ gulp.task("html", function(){
 	  .pipe(browserSync.stream());
 });
 
-gulp.task("assets", function(){
+gulp.task("img", function(){
 	return gulp.src(["./src/img/*"])
 		.pipe(gulp.dest("./build/img/"));
 })
+gulp.task('models', function() {
+	return gulp.src(["./src/models/*"]).pipe(gulp.dest("./build/models/"));
+})
+gulp.task("assets", ['img', 'models']);
 
 gulp.task("build", ["sass", "js", "html", "assets"]);
 

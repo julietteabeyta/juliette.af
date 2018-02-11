@@ -1,6 +1,6 @@
 'use strict';
 const path = require('path');
-
+const webpack = require('webpack');
 module.exports = {
   entry: {
     main: path.resolve("./src/js/index.js")
@@ -8,6 +8,14 @@ module.exports = {
   output: {
     filename: "index.bundle.js",
     path: path.resolve("./build/js")
+  },
+  resolve: {
+    alias: {
+      "three/STLLoader": path.join(
+        __dirname,
+        "node_modules/three/examples/js/loaders/STLLoader.js"
+      )
+    }
   },
   module: {
     rules: [
@@ -26,5 +34,10 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+      THREE: "three"
+    })
+  ]
 };
