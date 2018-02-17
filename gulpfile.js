@@ -46,8 +46,4 @@ gulp.task("assets", ['img', 'models']);
 
 gulp.task("build", ["sass", "js", "html", "assets"]);
 
-<<<<<<< HEAD
-gulp.task("default", ["assets", "watch", "server"]);
-=======
 gulp.task("default", ["build", "watch", "server"]);
->>>>>>> master
