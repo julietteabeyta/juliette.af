@@ -6,6 +6,9 @@
     justify-self: left;
     grid-template-columns: repeat(6, 1fr);
     align-items: center;
+    @include responsive(sm) {
+        margin-bottom: -10vh;
+    }
     &:before {
         display: block;
         height: 1px;

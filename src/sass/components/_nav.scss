@@ -14,9 +14,34 @@
 }
 
 .logo{
+	position: relative;
+	height: 20vw;
+	width: 80vw;
+	overflow:hidden;
+	padding: 25px;
 	img{
-		max-width: 100%;
-		width: 80vw;
-		padding: 25px;
+		object-fit: contain;
+		width: 100%;
+		position: absolute;
+		left:0;
+		right:0;
+		top:0;
+		bottom: 0;
+	}
+	&:before {
+		content: "";
+		background: black;
+		background-image: url(/img/jaLogo.svg);
+		background-size: cover;
+		background-repeat:no-repeat;
+		position: absolute;
+		z-index: 2;
+		top:0;
+		left:0;
+		right:0;
+		bottom: 0;
+		overflow:hidden;
+		
+		height: 50%;
 	}
 }

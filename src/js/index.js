@@ -1,103 +1,135 @@
 import * as THREE from "three";
 import "three/examples/js/loaders/STLLoader";
-const wrapper = document.querySelector(".wrapper");
-let scene, camera, renderer;
+import Barba from "barba.js";
 
-const init = () => {
-  // SCENE
-  scene = new THREE.Scene();
+const threeStuff = () => {
+    const wrapper = document.querySelector(".wrapper");
+    let scene, camera, renderer;
 
-  // CAMERA
-  camera = new THREE.PerspectiveCamera(
-    50,
-    window.innerWidth / window.innerHeight
-  );
-  camera.position.z = 10;
+    const init = () => {
+        // SCENE
+        scene = new THREE.Scene();
 
-  // LOAD MODEL
-  const loader = new THREE.STLLoader();
-  let bust;
-  let invertedBust;
-  loader.load("/models/bust.stl", function(geometry) {
-    const material = new THREE.MeshPhongMaterial({
-      color: 0xffffff,
-      specular: 0x111111,
-      shininess: 20,
-      transparent: true
-    });
-    material.opacity = 0.0;
+        // CAMERA
+        camera = new THREE.PerspectiveCamera(
+            50,
+            window.innerWidth / window.innerHeight
+        );
+        camera.position.z = 10;
 
-    bust = new THREE.Mesh(geometry, material);
-    bust.position.set(8, 0, -0.6);
-    bust.rotation.set(-Math.PI / 2, 0, -0.3);
-    bust.scale.set(0.03, 0.03, 0.03);
-    scene.add(bust);
+        // LOAD MODEL
+        const loader = new THREE.STLLoader();
+        let bust;
+        let invertedBust;
+        loader.load("/models/bust.stl", function(geometry) {
+            const material = new THREE.MeshPhongMaterial({
+                color: 0xffffff,
+                specular: 0x222222,
+                shininess: 20,
+                transparent: true
+            });
+            material.opacity = 0.0;
 
-    invertedBust = new THREE.Mesh(geometry, material);
-    invertedBust.position.set(-8, 0, -0.6);
-    invertedBust.rotation.set(-Math.PI / 2, Math.PI, -0.3);
-    invertedBust.scale.set(0.03, 0.03, 0.03);
-    scene.add(invertedBust);
-  });
+            bust = new THREE.Mesh(geometry, material);
+            bust.position.set(8, 0, -0.6);
+            bust.rotation.set(-Math.PI / 2, 0, -0.3);
+            bust.scale.set(0.03, 0.03, 0.03);
+            scene.add(bust);
 
-  const backgroundTexture = THREE.ImageUtils.loadTexture("/img/marble.jpg");
-  const backgroundMaterial = new THREE.MeshBasicMaterial({
-    map: backgroundTexture,
-    transparent: true
-  });
-  backgroundMaterial.opacity = 0.3;
-  const backgroundMesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 2, 0), backgroundMaterial);
-  backgroundMesh.material.depthTest = false;
-  backgroundMesh.material.depthWrite = false;
+            invertedBust = new THREE.Mesh(geometry, material);
+            invertedBust.position.set(-8, 0, -0.6);
+            invertedBust.rotation.set(-Math.PI / 2, Math.PI, -0.3);
+            invertedBust.scale.set(0.03, 0.03, 0.03);
+            scene.add(invertedBust);
+        });
 
-  // Create your background scene
-  const backgroundScene = new THREE.Scene();
-  const backgroundCamera = new THREE.Camera();
-  backgroundScene.add(backgroundCamera);
-  backgroundScene.add(backgroundMesh);
+        const backgroundTexture = THREE.ImageUtils.loadTexture("/img/marble.jpg");
+        const backgroundMaterial = new THREE.MeshBasicMaterial({
+            map: backgroundTexture,
+            transparent: true
+        });
+        backgroundMaterial.opacity = 0.3;
+        const backgroundMesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 2, 0), backgroundMaterial);
+        backgroundMesh.material.depthTest = false;
+        backgroundMesh.material.depthWrite = false;
 
-  // LIGHTING
-  const light1 = new THREE.PointLight(0x222222, 1, 70, 5);
-  light1.position.z = 5;
-  scene.add(light1);
+        // Create your background scene
+        const backgroundScene = new THREE.Scene();
+        const backgroundCamera = new THREE.Camera();
+        backgroundScene.add(backgroundCamera);
+        backgroundScene.add(backgroundMesh);
 
-  // RENDER
-  renderer = new THREE.WebGLRenderer();
+        // LIGHTING
+        const light1 = new THREE.PointLight(0x222222, 1, 70, 5);
+        light1.position.z = 5;
+        scene.add(light1);
 
-  renderer.setSize(wrapper.clientWidth, wrapper.clientHeight);
-  wrapper.appendChild(renderer.domElement);
-  const animate = () => {
-    requestAnimationFrame(animate);
-    renderer.autoClear = false;
-    renderer.clear();
-    renderer.render(backgroundScene, backgroundCamera);
-    renderer.render(scene, camera);
-    let fadeInBust = models => {
-      models.forEach(model => {
-        if(model && model.material.opacity < 0.7) {
-          model.material.opacity += 0.005;
-        } else {
-          fadeInBust = null;
-        }
-      })
-    }
-    const rotateBust = models => {
-      models.forEach(model => {
-        if (model) {
-          model.rotation.z -= 0.001;
-        }
-      });
+        // RENDER
+        renderer = new THREE.WebGLRenderer();
+
+        renderer.setSize(wrapper.clientWidth, wrapper.clientHeight);
+        wrapper.appendChild(renderer.domElement);
+        const animate = () => {
+            requestAnimationFrame(animate);
+            renderer.autoClear = false;
+            renderer.clear();
+            renderer.render(backgroundScene, backgroundCamera);
+            renderer.render(scene, camera);
+            let fadeInBust = models => {
+                models.forEach(model => {
+                    if (model && model.material.opacity < .9) {
+                        model.material.opacity += 0.005;
+                    } else {
+                        fadeInBust = null;
+                    }
+                })
+            }
+            const rotateBust = models => {
+                models.forEach(model => {
+                    if (model) {
+                        model.rotation.z -= 0.001;
+                    }
+                });
+            };
+            fadeInBust([bust, invertedBust]);
+            rotateBust([bust, invertedBust]);
+        };
+        animate();
     };
-    fadeInBust([bust, invertedBust]);
-    rotateBust([bust, invertedBust]);
-  };
-  animate();
-};
-init();
-const handleResize = () => {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
+    init();
+    const handleResize = () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
 
-  renderer.setSize(wrapper.clientWidth, wrapper.clientHeight);
+        renderer.setSize(wrapper.clientWidth, wrapper.clientHeight);
+    }
+    window.addEventListener("resize", handleResize, false);
 }
-window.addEventListener("resize", handleResize, false);
+
+// threeStuff();
+Object.assign(Barba.Pjax.Dom, {
+  containerClass: 'inner',
+  wrapperId: 'wrapper'
+});
+const HideShowTransition = Barba.BaseTransition.extend({
+  start: function() {
+    this.newContainerLoading.then(this.transitionOut.bind(this));
+  },
+  transitionOut: function() {
+    this.newContainer.classList.remove('active');
+    this.oldContainer.classList.remove('active');
+    setTimeout(() => {
+      this.finish();
+    }, 200)
+  },
+  finish: function() {
+    document.body.scrollTop = 0;
+    this.newContainer.classList.add('active');
+    this.newContainer.style.visibility = 'visible';
+    this.done();
+  }
+});
+Barba.Pjax.getTransition = () => HideShowTransition;
+document.addEventListener("DOMContentLoaded", event => {
+  Barba.Pjax.start();
+})
