@@ -1,4 +1,4 @@
-.wrapper{
+.wrapper {
 	$border-color: $peach;
 	$border-width: 10px;
 	$border-margin: 25px;
@@ -29,5 +29,52 @@
 		background: transparentize($border-color, .5);
 		display: block;
 		height: $border-width;
+	}
+	&-contact {
+		display: grid;
+	    text-transform: uppercase;
+	    background: url(/img/background.jpg);
+	    background-size: cover;
+	    grid-template-rows: repeat(2, 1fr);
+	    grid-row-gap: 10vh;
+	    h1 {
+	    	font-size: 1rem;
+	    	position: relative;
+	    	color: transparent;
+	    	@include responsive(sm) {
+	    	    margin-right: -200px;
+	    	    text-align: center;
+	    	    text-indent: 3.5vw; // margin-left: 175px;
+	    	    letter-spacing: 3.5vw;
+	    	}
+	    	&:before {
+	    	    position: absolute;
+	    	    top: 0;
+	    	    right: 0;
+	    	    bottom: 0;
+	    	    left: 0;
+	    	    display: grid;
+	    	    content: attr(data-text);
+	    	    color: transparent;
+	    	    justify-content: center;
+	    	    align-content: center;
+	    	    @include responsive(sm)
+	    	    {
+	    	        color: white;
+	    	    }
+	    	}
+	    	&:after {
+	    	    position: relative;
+	    	    z-index: -1;
+	    	    display: grid;
+	    	    width: 50vw;
+	    	    height: 100%;
+	    	    margin: 0 auto;
+	    	    content: url('/img/contact.svg');
+	    	    transform: translateY(-20%);
+	    	    text-indent: 0;
+	    	    align-content: center;
+	    	}
+	    }
 	}
 }
