@@ -36,12 +36,17 @@
 	    background: url(/img/background.jpg);
 	    background-size: cover;
 	    grid-template-rows: repeat(2, 1fr);
-	    grid-row-gap: 10vh;
+	    @include responsive(sm){
+	    	grid-row-gap: 10vh;
+	    }
 	    h1 {
+	    	justify-self: end;
+    		padding: 1rem;
 	    	font-size: 1rem;
 	    	position: relative;
 	    	color: transparent;
 	    	@include responsive(sm) {
+	    		justify-self: stretch;
 	    	    margin-right: -200px;
 	    	    text-align: center;
 	    	    text-indent: 3.5vw; // margin-left: 175px;

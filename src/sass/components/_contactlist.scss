@@ -2,10 +2,12 @@
     font-size: .4rem;
     max-width: 100%;
     list-style-position: inside;
-
+    letter-spacing: 7px;
+    padding: 1rem;
     @include responsive(md) {
         display: grid;
         letter-spacing: 13px;
+        padding: 0;
         grid-template-rows: repeat(4, 1fr);
         grid-template-columns: repeat(10, 1fr);
         place-items: center center;
@@ -17,15 +19,25 @@
     }
     li {
         line-height: 1rem;
-        margin-bottom: 8.5vh;
+        margin-bottom: 40px;
         padding-left: 30px;
         background-repeat: no-repeat;
         background-size: contain;
+        float:right;
+        margin-left: 100%;
+        @include responsive(sm) {
+            float: none;
+            margin-bottom: 8.5vh;
+            margin-left: 0;
+        }
         a {
-            padding-bottom: 18px;
+            padding-bottom: 8px;
             padding-left: 5px;
             border-bottom: 1px solid white;
-            border-image: linear-gradient(to right, transparentize($peach, .5), transparentize($peach, 1)) 1 100;
+            border-image: linear-gradient(to right, transparentize($peach, .5), transparentize($peach, 1)) 1 80;
+            @include responsive(sm) {
+                padding-bottom: 18px;
+            }
         }
     }
 
