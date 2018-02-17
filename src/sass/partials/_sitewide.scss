@@ -1,0 +1,17 @@
+.back-button {
+    font-size: .6rem;
+    display: grid;
+    letter-spacing: 7px;
+    align-self: center;
+    justify-self: left;
+    grid-template-columns: repeat(6, 1fr);
+    align-items: center;
+    &:before {
+        display: block;
+        height: 1px;
+        margin-right: 20px;
+        content: '';
+        background: $peach;
+        grid-column: 1 / span 4;
+    }
+}

@@ -4,6 +4,9 @@ var webpack = require("webpack");
 var webpackConfig = Object.assign({}, require("./webpack.config.js"));
 var browserSync = require("browser-sync");
 
+var htmlPaths = ["./src/*.html", "./src/**/*.html"];
+var sassPaths = ["./src/sass/*.scss", "./src/sass/**/*.scss"];
+
 gulp.task("sass", function(){
 	return gulp.src("./src/sass/*.scss")
 	  .pipe(sass().on("error", sass.logError))
@@ -17,8 +20,8 @@ gulp.task("js", function() {
 })
 
 gulp.task("watch", function(){
-	gulp.watch(["./src/sass/*.scss", "./src/sass/**/*.scss"], ["sass"]);
-	gulp.watch("./src/*.html", ["html"]);
+	gulp.watch(sassPaths, ["sass"]);
+	gulp.watch(htmlPaths, ["html"]);
 	gulp.watch("./src/js/*.js", ["js"]);
 });
 
@@ -27,7 +30,7 @@ gulp.task("server", function(){
 });
 
 gulp.task("html", function(){
-	return gulp.src("./src/*.html")
+	return gulp.src(htmlPaths)
 	  .pipe(gulp.dest("./build/"))
 	  .pipe(browserSync.stream());
 });

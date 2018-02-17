@@ -1,0 +1,85 @@
+.wrapper {
+	$border-color: $peach;
+	$border-width: 10px;
+	$border-margin: 25px;
+	width: calc(100vw - #{$border-margin*2});
+	height: calc(100vh - #{$border-margin*2});
+	position: fixed;
+	margin: $border-margin;
+	top: 0;
+	left: 0;
+	border: $border-width solid;
+	border-image: linear-gradient(to bottom, $border-color, transparentize($border-color, .5)) 1 100%;
+	&:before{
+		content: "";
+		position: absolute;
+		top: -$border-width;
+		left: 0;
+		right:0;
+		background: $border-color;
+		display: block;
+		height: $border-width;
+	}
+	&:after{
+		content: "";
+		position: absolute;
+		bottom: -$border-width;
+		left: 0;
+		right:0;
+		background: transparentize($border-color, .5);
+		display: block;
+		height: $border-width;
+	}
+	&-contact {
+		display: grid;
+	    text-transform: uppercase;
+	    background: url(/img/background.jpg);
+	    background-size: cover;
+	    grid-template-rows: repeat(2, 1fr);
+	    @include responsive(sm){
+	    	grid-row-gap: 10vh;
+	    }
+	    h1 {
+	    	justify-self: end;
+    		padding: 1rem;
+	    	font-size: 1rem;
+	    	position: relative;
+	    	color: transparent;
+	    	@include responsive(sm) {
+	    		justify-self: stretch;
+	    	    margin-right: -200px;
+	    	    text-align: center;
+	    	    text-indent: 3.5vw; // margin-left: 175px;
+	    	    letter-spacing: 3.5vw;
+	    	}
+	    	&:before {
+	    	    position: absolute;
+	    	    top: 0;
+	    	    right: 0;
+	    	    bottom: 0;
+	    	    left: 0;
+	    	    display: grid;
+	    	    content: attr(data-text);
+	    	    color: transparent;
+	    	    justify-content: center;
+	    	    align-content: center;
+	    	    @include responsive(sm)
+	    	    {
+	    	        color: white;
+	    	    }
+	    	}
+	    	&:after {
+	    	    position: relative;
+	    	    z-index: -1;
+	    	    display: grid;
+	    	    width: 50vw;
+	    	    height: 100%;
+	    	    margin: 0 auto;
+	    	    content: url('/img/contact.svg');
+	    	    transform: translateY(-20%);
+	    	    text-indent: 0;
+	    	    align-content: center;
+	    	}
+	    }
+	}
+}

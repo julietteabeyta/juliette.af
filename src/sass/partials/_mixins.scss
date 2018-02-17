@@ -1,0 +1,23 @@
+
+@mixin responsive($breakpoint) {
+	@if ($breakpoint = xs) {
+		@media screen and (min-width: $breakpoint-xs) {
+			@content;
+		}
+	}
+	@elseif ($breakpoint = sm) {
+		@media screen and (min-width: $breakpoint-sm) {
+			@content;
+		}
+	} @elseif ($breakpoint = md) {
+		@media screen and (min-width: $breakpoint-md) {
+			@content;
+		}
+	} @elseif ($breakpoint = lg) {
+		@media screen and (min-width: $breakpoint-lg) {
+			@content;
+		}
+	} @else {
+		@error "Hahah you can't use that shit lel";
+	}
+}
