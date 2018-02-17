@@ -16,3 +16,10 @@
 body {
     background: black;
 }
+.inner {
+	opacity: 0;
+	transition: all .2s ease;
+}
+.active {
+	opacity: 1;
+}
