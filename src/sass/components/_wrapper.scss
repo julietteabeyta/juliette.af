@@ -80,7 +80,7 @@
 	    	align-content: center;
 	    	background-image:none;
 	    	margin: 0 auto;
-	    	padding: 0 10vw;
+	    	padding: 0 5vw;
 			max-width: 450px;
 	    	@include responsive(sm){
 				padding: 10vw 2vw;
@@ -91,6 +91,7 @@
 		    	margin-right: 20%;
 		    	margin-left: -10vw;
 		    	padding: 0 0 0 10vw;
+		    	max-width: 600px
 	    	}
 	    }
 	    p {
