@@ -4,7 +4,7 @@
     list-style-position: inside;
     letter-spacing: 7px;
     padding: 1rem;
-    @include responsive(md) {
+    @include responsive(xs) {
         display: grid;
         letter-spacing: 13px;
         padding: 0;
@@ -25,7 +25,7 @@
         background-size: contain;
         float:right;
         margin-left: 100%;
-        @include responsive(sm) {
+        @include responsive(xs) {
             float: none;
             margin-bottom: 8.5vh;
             margin-left: 0;

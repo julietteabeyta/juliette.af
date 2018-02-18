@@ -1,19 +1,19 @@
 
 @mixin responsive($breakpoint) {
-	@if ($breakpoint = xs) {
+	@if ($breakpoint == xs) {
 		@media screen and (min-width: $breakpoint-xs) {
 			@content;
 		}
 	}
-	@elseif ($breakpoint = sm) {
+	@elseif ($breakpoint == sm) {
 		@media screen and (min-width: $breakpoint-sm) {
 			@content;
 		}
-	} @elseif ($breakpoint = md) {
+	} @elseif ($breakpoint == md) {
 		@media screen and (min-width: $breakpoint-md) {
 			@content;
 		}
-	} @elseif ($breakpoint = lg) {
+	} @elseif ($breakpoint == lg) {
 		@media screen and (min-width: $breakpoint-lg) {
 			@content;
 		}

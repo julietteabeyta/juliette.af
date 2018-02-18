@@ -11,6 +11,7 @@
 	border: $border-width solid;
 	border-image: linear-gradient(to bottom, $border-color, transparentize($border-color, .5)) 1 100%;
     background: url(/img/background.jpg);
+    background-size: cover;
 	&:before{
 		content: "";
 		position: absolute;
@@ -31,14 +32,87 @@
 		display: block;
 		height: $border-width;
 	}
-	.wrapper-contact{
+	.wrapper-about {
+		display: flex;
+		flex-direction: column;
+	    align-items: center;
+	    justify-content: center;
+	    align-content: center;
+	    text-transform: uppercase;
+	    grid-row-gap: 0;
+		text-align: justify;
+    	@include responsive(sm) {
+			display: grid;
+		    grid-template-columns: repeat(2, 1fr);
+		    grid-template-areas:
+			    "backButton content"
+			    "profileImage content";
+	    	grid-template-rows: 28vh 1fr;
+    	}
+	    .back-button {
+	    	grid-area: backButton;
+	    	align-self: start;
+	    	margin-top: 90px;
+	    	@include responsive(xs){
+	    		margin-top: 120px;
+	    	}
+	    }
+	    .profilepic {
+	    	grid-area: profileImage;
+	    	margin: 5vh auto;
+	    	width: 30vw;
+	    	align-self: start;
+	    	@include responsive(sm) {
+		    	width: 22vw;
+	    		margin-left: 5vw;
+
+	    	}
+	    }
+	    .aboutSvg{
+	    	height: 400px;
+	    }
+	    .content {
+	    	grid-area: content;
+	    	background-size: 10vw;
+	    	background-repeat: no-repeat;
+	    	display: grid;
+	    	align-self: stretch;
+	    	align-content: center;
+	    	background-image:none;
+	    	margin: 0 auto;
+	    	padding: 0 10vw;
+			max-width: 450px;
+	    	@include responsive(sm){
+				padding: 10vw 2vw;
+				max-width: auto;
+	    	}
+	    	@include responsive(md){
+	    		background-image: url(/img/about.svg);
+		    	margin-right: 20%;
+		    	margin-left: -10vw;
+		    	padding: 0 0 0 10vw;
+	    	}
+	    }
+	    p {
+	    	text-transform: none;
+			font-size: 10px;
+			line-height: 20px;
+	    	padding: 3vh 0;
+	    	margin: 0 auto;
+	    	right: 0;
+	    	top: 0;
+	    	@include responsive(sm) {
+	    		padding: 3vh 3vw;
+	    	}
+	    }
+	    h1{
+			letter-spacing: .5vw;
+	    }
+	}
+	.wrapper-contact {
 		display: grid;
 	    text-transform: uppercase;
-	    background-size: cover;
 	    grid-template-rows: repeat(2, 1fr);
-	    @include responsive(sm){
-	    	grid-row-gap: 10vh;
-	    }
 	    h1 {
 	    	justify-self: end;
     		padding: 1rem;
@@ -49,7 +123,7 @@
 	    		justify-self: stretch;
 	    	    margin-right: -200px;
 	    	    text-align: center;
-	    	    text-indent: 3.5vw; // margin-left: 175px;
+	    	    text-indent: 3.5vw;
 	    	    letter-spacing: 3.5vw;
 	    	}
 	    	&:before {
