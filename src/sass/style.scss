@@ -16,12 +16,23 @@
 body {
     background: black;
 }
+#wrapper {
+}
 .inner {
 	opacity: 0;
-	transition: all .2s ease;
+	transition: all .3s ease;
+	+ canvas {
+		opacity: 0;
+		transition: all .2s ease;
+		transform: scale(1.02);
+	}
 }
 .active {
 	opacity: 1;
+	+ canvas {
+		opacity: 1;
+		transform: scale(1);
+	}
 }
 canvas {
 	position: absolute;
