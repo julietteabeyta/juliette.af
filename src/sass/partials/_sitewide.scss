@@ -6,6 +6,7 @@
     justify-self: left;
     grid-template-columns: repeat(6, 1fr);
     align-items: center;
+    text-transform: uppercase;
     @include responsive(sm) {
         margin-bottom: -10vh;
     }

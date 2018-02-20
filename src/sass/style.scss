@@ -15,9 +15,9 @@
 
 body {
     background: black;
+
 }
-#wrapper {
-}
+
 .inner {
 	opacity: 0;
 	transition: all .3s ease;
@@ -40,3 +40,73 @@ canvas {
 	left: 0;
 	z-index: -1;
 }
+.wrapper-work{
+	display: grid;
+	grid-template-rows: repeat(3, 1fr);
+	grid-template-columns: repeat(2, 1fr);
+	grid-row-gap: 80px;
+	align-items: center;
+	.content {
+		grid-row: 2;
+		grid-column: 1;
+	}
+	.work-content{
+		width: 45vw;
+		height: 100%;
+		overflow-y: scroll;
+		overflow-x: visible;
+		padding: 1vw;
+		grid-column: -1;
+		grid-row: 1 / span 3;
+		&::-webkit-scrollbar { width: 0 !important; display:none !important}
+		>div {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: calc(50vh - #{$border-margin});
+			margin: calc(25vh - #{$border-margin}) 0;
+			border: 1px solid $peach;
+			transform: scale(1.0);
+			background: transparent;
+			filter: blur(4px);
+			cursor:pointer;
+			transition: all .2s ease;
+			h1, p{
+				display: none;
+			}
+			img{
+				max-width: 100%;
+				display: block;
+				filter: none;
+			}
+			&:hover {
+				img{
+					display: none;
+				}
+				p{
+					display: block;
+					margin: 2vmin 15vmin;
+					text-align: justify;
+				}
+				filter: none;
+				transform: scale(1.01);
+			}
+			&:after{
+				h1{
+					display: block;
+				}
+			}
+		}
+	}
+	.worksvg{
+		max-width: 35vw;
+		position: fixed;
+	}
+}
+
+
+
+
+
+
+

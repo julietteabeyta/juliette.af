@@ -28,6 +28,7 @@ const HideShowTransition = Barba.BaseTransition.extend({
 Barba.Pjax.getTransition = () => HideShowTransition;
 document.addEventListener("DOMContentLoaded", event => {
   Barba.Pjax.start();
+  Barba.Prefetch.init();
 });
 
 }
