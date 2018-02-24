@@ -7,8 +7,10 @@
     grid-template-columns: repeat(6, 1fr);
     align-items: center;
     text-transform: uppercase;
-    @include responsive(sm) {
+    position: absolute;
+    @include responsive(xs) {
         margin-bottom: -10vh;
+        position: relative;
     }
     &:before {
         display: block;

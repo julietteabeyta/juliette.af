@@ -1,5 +1,6 @@
 import Barba from "barba.js";
 import backgroundAnimation from "./backgroundAnimation";
+import overlay from './overlay';
 
 const Pjax = () => {
 Object.assign(Barba.Pjax.Dom, {
@@ -19,6 +20,7 @@ const HideShowTransition = Barba.BaseTransition.extend({
     }, 200);
   },
   finish: function() {
+    overlay(this.newContainer);
     document.body.scrollTop = 0;
     this.newContainer.classList.add("active");
     this.newContainer.style.visibility = "visible";
