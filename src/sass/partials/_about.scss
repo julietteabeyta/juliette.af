@@ -1,0 +1,78 @@
+.wrapper-about {
+	display: flex;
+	flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    text-transform: uppercase;
+    grid-row-gap: 0;
+	text-align: justify;
+	@include responsive(sm) {
+		display: grid;
+	    grid-template-columns: repeat(2, 1fr);
+	    grid-template-areas:
+		    "backButton content"
+		    "profileImage content";
+    	grid-template-rows: 28vh 1fr;
+	}
+    // .back-button {
+    // 	grid-area: backButton;
+    // 	align-self: start;
+    // 	margin-top: 90px;
+    // 	@include responsive(xs){
+    // 		margin-top: 120px;
+    // 	}
+    // }
+    .profilepic {
+    	grid-area: profileImage;
+    	margin: 5vh auto;
+    	width: 30vw;
+    	align-self: start;
+    	@include responsive(sm) {
+	    	width: 22vw;
+    		margin-left: 5vw;
+    		margin-top: 0;
+    	}
+    }
+    .aboutSvg{
+    	height: 400px;
+    }
+    .content {
+    	grid-area: content;
+    	background-size: 10vw;
+    	background-repeat: no-repeat;
+    	display: grid;
+    	align-self: stretch;
+    	align-content: center;
+    	background-image:none;
+    	margin: 0 auto;
+    	padding: 0 5vw;
+		max-width: 450px;
+    	@include responsive(sm){
+			padding: 10vw 2vw;
+			max-width: auto;
+    	}
+    	@include responsive(md){
+    		background-image: url(/img/about.svg);
+	    	margin-right: 20%;
+	    	margin-left: -10vw;
+	    	padding: 0 0 0 10vw;
+	    	max-width: 600px
+    	}
+    }
+    p {
+    	text-transform: none;
+		font-size: 10px;
+		line-height: 20px;
+    	padding: 3vh 0;
+    	margin: 0 auto;
+    	right: 0;
+    	top: 0;
+    	@include responsive(sm) {
+    		padding: 3vh 3vw;
+    	}
+    }
+    h1{
+		letter-spacing: .5vw;
+    }
+}

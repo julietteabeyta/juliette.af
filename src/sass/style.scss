@@ -4,10 +4,15 @@
 @import 'partials/mixins';
 @import 'partials/typography';
 @import 'partials/sitewide';
+@import 'partials/work';
+@import 'partials/about';
+@import 'partials/contact';
 
 @import 'components/nav';
 @import 'components/wrapper';
 @import 'components/contactlist';
+@import 'components/projectcard';
+@import 'components/overlay';
 
 * {
     box-sizing: border-box;
@@ -15,11 +20,28 @@
 
 body {
     background: black;
+
 }
+
 .inner {
 	opacity: 0;
-	transition: all .2s ease;
+	transition: all .3s ease;
+	+ canvas {
+		opacity: 0;
+		transition: all .2s ease;
+		transform: scale(1.02);
+	}
 }
 .active {
 	opacity: 1;
+	+ canvas {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+canvas {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
 }

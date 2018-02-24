@@ -14,6 +14,10 @@ module.exports = {
       "three/STLLoader": path.join(
         __dirname,
         "node_modules/three/examples/js/loaders/STLLoader.js"
+      ),
+      "three/OrbitControls": path.join(
+        __dirname,
+        "node_modules/three/examples/js/controls/OrbitControls.js"
       )
     }
   },
