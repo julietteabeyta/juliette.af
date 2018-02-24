@@ -1,5 +1,6 @@
 var gulp = require("gulp");
 var sass = require("gulp-sass");
+var autoprefixer = require("gulp-autoprefixer");
 var webpack = require("webpack");
 var webpackConfig = Object.assign({}, require("./webpack.config.js"));
 var browserSync = require("browser-sync");
@@ -11,6 +12,10 @@ var jsPaths = ["./src/js/*.js", './src/js/modules/*.js'];
 gulp.task("sass", function(){
 	return gulp.src("./src/sass/*.scss")
 	  .pipe(sass().on("error", sass.logError))
+	  .pipe(autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade: false
+        }))
 	  .pipe(gulp.dest("./build/css/"))
 	  .pipe(browserSync.stream());
 });
