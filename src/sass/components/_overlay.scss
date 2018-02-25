@@ -2,13 +2,16 @@
 	display: grid;
 	align-items: center;
 	justify-content: center;
+	background:rgba(0,0,0,.9);
+	position: fixed;
+	top: $border-width + $border-margin;
+	bottom: $border-width + $border-margin*3;
+	width: calc(100vw - #{$border-margin*2} - #{$border-width * 2});
+	@include responsive(sm) {
 	position: absolute;
 	top: 0;
 	bottom: 0;
 	right: 0;
-	background:rgba(0,0,0,.9);
-	width: calc(100vw - #{$border-margin*2} - #{$border-width * 2});
-	@include responsive(sm) {
 		clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 20% 100%);
 		width: 80vw;
 	}
@@ -55,9 +58,8 @@
 		width: 100%;
 		display: block;
 		opacity: 0;
-		pointer-events: none;
-		
-	}
+		pointer-events: none;		
+}
 
 .overlay-inner{
 	display: grid;
@@ -85,9 +87,12 @@
 }
 
 .overlay-content{
-	padding: 0 2vw;
+	padding: 0 15vw;
 	text-align: justify;
 	font-size: 10px;
+	@include responsive(xs){
+		padding: 0 2vw;
+	}
 	h1{
 		font-size: 2rem;
 		text-transform: lowercase;

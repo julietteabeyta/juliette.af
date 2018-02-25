@@ -2,15 +2,16 @@
     font-size: .6rem;
     display: grid;
     letter-spacing: 7px;
-    align-self: center;
     justify-self: left;
     grid-template-columns: repeat(6, 1fr);
     align-items: center;
     text-transform: uppercase;
     position: absolute;
-    @include responsive(xs) {
-        margin-bottom: -10vh;
-        position: relative;
+    margin-top: 100px;
+    z-index: 50;
+    @include responsive(sm) {
+        align-self: center;
+        margin-top: -60vh;
     }
     &:before {
         display: block;
@@ -19,5 +20,12 @@
         content: '';
         background: $peach;
         grid-column: 1 / span 4;
+    }
+    
+}
+.wrapper-work  {
+    >.back-button {
+        position: fixed;
+        margin-top: 100px;
     }
 }

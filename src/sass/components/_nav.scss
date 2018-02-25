@@ -5,7 +5,10 @@
 	height: 100%;
 	text-transform: uppercase;
 	letter-spacing: 5.6px;
-	font-size: 14px;
+	font-size: 16px;
+	@include responsive(sm){
+		font-size: 14px;
+	}
 	@for $i from 1 through 4 {
 		li:nth-child(#{$i}) {
 			grid-row: #{$i + 1};

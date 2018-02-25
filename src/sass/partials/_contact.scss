@@ -1,11 +1,23 @@
 .wrapper-contact {
-	display: grid;
     text-transform: uppercase;
-    grid-template-rows: repeat(2, 1fr);
+    @include responsive(sm){
+        display: grid;
+        grid-template-rows: repeat(2, 1fr);
+    }
+    .content{
+        margin-top: 20vh;
+    }
+    p{
+        font-size: 15px;
+        @include responsive(sm){
+            font-size: 10px;
+        }
+    }
     h1 {
     	justify-self: end;
 		padding: 1rem;
     	font-size: 1rem;
+        margin-bottom: 5vh;
     	position: relative;
     	color: transparent;
     	@include responsive(sm) {
