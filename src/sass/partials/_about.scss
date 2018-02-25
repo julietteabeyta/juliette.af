@@ -36,9 +36,7 @@
     	align-self: stretch;
     	align-content: center;
     	background-image:none;
-    	margin: 0 auto 15px;
     	padding: 0 5vw;
-		max-width: 450px;
     	@include responsive(xs){
 			padding: 10vw 2vw;
 			max-width: auto;
@@ -59,15 +57,11 @@
     	text-transform: none;
 		font-size: 10px;
 		line-height: 20px;
-    	padding: 3vh 0;
-    	margin: 0 auto;
     	right: 0;
     	top: 0;
-    	@include responsive(sm) {
-    		padding: 3vh 3vw;
-    	}
     }
     h1{
 		letter-spacing: .5vw;
+        margin-bottom: 10px;
     }
 }

@@ -44,11 +44,17 @@ gulp.task("html", function(){
 gulp.task("img", function(){
 	return gulp.src(["./src/img/*"])
 		.pipe(gulp.dest("./build/img/"));
-})
+});
+
 gulp.task('models', function() {
 	return gulp.src(["./src/models/*"]).pipe(gulp.dest("./build/models/"));
-})
-gulp.task("assets", ['img', 'models']);
+});
+
+gulp.task('fonts', function() {
+	return gulp.src(["./src/fonts/*"]).pipe(gulp.dest("./build/fonts/"));
+});
+
+gulp.task("assets", ['img', 'models', 'fonts']);
 
 gulp.task("build", ["sass", "js", "html", "assets"]);
 
