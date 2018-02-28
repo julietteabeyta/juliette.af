@@ -54,7 +54,10 @@ gulp.task('fonts', function() {
 	return gulp.src(["./src/fonts/*"]).pipe(gulp.dest("./build/fonts/"));
 });
 
-gulp.task("assets", ['img', 'models', 'fonts']);
+gulp.task('static', function() {
+	return gulp.src('./src/static/*').pipe(gulp.dest('./build/'))
+})
+gulp.task("assets", ['img', 'models', 'fonts', 'static']);
 
 gulp.task("build", ["sass", "js", "html", "assets"]);
 
