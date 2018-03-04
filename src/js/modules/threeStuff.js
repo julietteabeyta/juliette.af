@@ -1,7 +1,13 @@
-import{ Scene, PerspectiveCamera, STLLoader,
-        MeshPhongMaterial, Mesh, PointLight,
-        TextureLoader, MeshBasicMaterial,
-        PlaneGeometry, Camera, WebGLRenderer } from "three";
+import {
+  Scene,
+  PerspectiveCamera,
+  STLLoader,
+  MeshPhongMaterial,
+  Mesh,
+  PointLight,
+  Camera,
+  WebGLRenderer
+} from "three";
 import "three/examples/js/loaders/STLLoader";
 import "three/examples/js/controls/OrbitControls";
 
@@ -15,12 +21,8 @@ const threeStuff = () => {
     scene = new Scene();
 
     // Add Camera
-    camera = new PerspectiveCamera(
-      50,
-      window.innerWidth / window.innerHeight
-    );
+    camera = new PerspectiveCamera(50, window.innerWidth / window.innerHeight);
     camera.position.z = 10;
-    
 
     // Load model
     const loader = new STLLoader();
@@ -52,69 +54,17 @@ const threeStuff = () => {
     light1.position.z = 5;
     scene.add(light1);
 
-    // BACKGROUND
-    // Create background texture
-    const backgroundLoader = new TextureLoader;
-    const backgroundTexture = backgroundLoader.load("/img/marble.jpg");
-    const backgroundMaterial = new MeshBasicMaterial({
-      map: backgroundTexture,
-      transparent: true
+    renderer = new WebGLRenderer({
+      alpha: true
     });
-    backgroundMaterial.opacity = 0.8;
-    const backgroundMesh = new Mesh(
-      new PlaneGeometry(2, 2, 0),
-      backgroundMaterial
-    );
-    backgroundMesh.material.depthTest = false;
-    backgroundMesh.material.depthWrite = false;
-
-    // Create background scene & camera, add both to scene
-    const backgroundScene = new Scene();
-    const backgroundCamera = new Camera();
-    backgroundScene.add(backgroundCamera);
-    backgroundScene.add(backgroundMesh);
-
-    // BARS
-    //
-    //
-    // Create bars scene
-    // const bar1material = new THREE.LineBasicMaterial({
-    //   color: 0xdba698,
-    // });
-    // const bar1shape = new THREE.Shape();
-    // bar1shape.moveTo(0, 0);
-    // bar1shape.lineTo(5, 0);
-    // bar1shape.lineTo(5, 5);
-    // bar1shape.lineTo(0, 0);
-
-    // var extrudeSettings = { amount: .1, bevelEnabled: false};
-    // const bar1geo = new THREE.ExtrudeGeometry(bar1shape, extrudeSettings);
-    // const bar1mesh = new THREE.Mesh(bar1geo, bar1material);
-
-    // // Create background scene & camera, add both to scene
-    // const barsScene = new THREE.Scene();
-    // const frustumSize = 1000;
-    // const aspect = wrapper.clientWidth / wrapper.clientHeight;
-    // const barsCamera = new THREE.OrthographicCamera(frustumSize * aspect / -2, frustumSize * aspect / 2, frustumSize / 2, frustumSize / -2, 1, 2000);
-    
-    // var controls = new THREE.OrbitControls(barsCamera);
-    // controls.update();
-    // barsCamera.lookAt(barsScene.position);
-    // barsCamera.rotateY(90)
-    //  const barsCamera = new THREE.Camera();
-    // barsScene.add(barsCamera);
-    // barsScene.add(bar1mesh);
-
-    // RENDER
-    renderer = new WebGLRenderer();
-
+    renderer.setClearColor(0x000000, 0);
     renderer.setSize(wrapper.clientWidth, wrapper.clientHeight);
+    renderer.domElement.id = "three";
     wrapper.appendChild(renderer.domElement);
     const animate = () => {
       requestAnimationFrame(animate);
       renderer.autoClear = false;
       renderer.clear();
-      renderer.render(backgroundScene, backgroundCamera);
       renderer.render(scene, camera);
       let fadeInBust = models => {
         models.forEach(model => {
