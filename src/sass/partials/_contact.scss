@@ -7,21 +7,25 @@
     .content{
         margin-top: 20vh;
     }
-    p{
-        font-size: 15px;
-        @include responsive(sm){
-            font-size: 10px;
+    ul{
+        font-size: 10px;
+        li{
+            padding-bottom: 10px;
+            @include responsive(sm) {
+                padding-bottom: 0;
+            }
         }
     }
     h1 {
     	justify-self: end;
 		padding: 1rem;
     	font-size: 1rem;
-        margin-bottom: 5vh;
+        margin-bottom: 10vh;
     	position: relative;
     	color: transparent;
     	@include responsive(sm) {
     		justify-self: stretch;
+            margin-bottom: 5vh;
     	    margin-right: -200px;
     	    text-align: center;
     	    text-indent: 3.5vw;
