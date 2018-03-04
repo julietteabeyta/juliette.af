@@ -1,9 +1,6 @@
 #wrapper{
 	width: calc(100vw - #{$border-margin*2});
-	height: 85vh;
-	@include responsive(xs){
-		height: calc(100vh - #{$border-margin*2});
-	}
+	height: calc(100vh - #{$border-margin*2});
 	position: fixed;
 	margin: $border-margin;
 	top: 0;
